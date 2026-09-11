@@ -24,3 +24,11 @@ from app.faturamento.cobranca import processar_cobranca
 def test_processar_cobranca_funcional(valor_base, plano, dias_atraso, retorno_esperado):
     assert processar_cobranca(valor_base, plano, dias_atraso) == retorno_esperado
 
+
+def test_tempo_execucao():
+    inicio = time.perf_counter()
+    resultado = processar_cobranca(120, "ELITE", 0)
+    fim = time.perf_counter()
+    tempo_decorrido = fim - inicio
+
+    assert tempo_decorrido < 0.06
